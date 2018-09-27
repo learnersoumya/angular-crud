@@ -1,0 +1,61 @@
+<!-- Using of Input decrator starts -->
+
+<!-- <button (click)="nextEmployee()" class="btn btn-primary">
+  View Next Employee
+</button>
+<br/>
+<br/>
+<app-display-employee [employee]="employeeToDispaly"></app-display-employee> -->
+
+<!-- Using of Input decrator ends -->
+
+
+
+<!-- Using of output decorator starts -->
+
+<!-- <h1 *ngIf="dataFromChild">
+  {{ dataFromChild?.name+' '+dataFromChild?.gender }}
+</h1>
+<div *ngFor="let employee of employees">
+  <app-display-employee [employee]="employee" (notify)="handleNotify($event)"></app-display-employee>
+</div> -->
+
+<!-- Using of output decorator ends -->
+
+<!-- Using of template reference varable to get data from child component starts -->
+<!-- <h1 #h1Variable>
+
+</h1>
+<div *ngFor="let employee of employees">
+  <div (click)="h1Variable.innerHTML = childComponent.getEmployeeNameAndGender()">
+    <app-display-employee [employee]="employee" #childComponent></app-display-employee>
+  </div>
+</div> -->
+
+<!-- Using of template reference varable to get data from child component ends -->
+
+
+<!-- Application code -->
+<div class="form-group">
+  <input type="text" class="form-control" placeholder="Search by name" name="searchTerm" [(ngModel)]="searchTerm">
+</div>
+<!-- Filter employee using filter pipe -->
+<!-- <div *ngFor="let employee of employees | employeeFilter: searchTerm">
+  <div class="cursorPointer" (click)="onClick(employee.id)">
+    <app-display-employee [employee]="employee"></app-display-employee>
+  </div>
+</div> -->
+
+<!-- Filter Employee within its own component -->
+<!-- <div *ngFor="let employee of filteredEmployee">
+  <div class="cursorPointer" (click)="onClick(employee.id)">
+    <app-display-employee [employee]="employee"></app-display-employee>
+  </div>
+</div> -->
+
+<!-- with view of edit view and update -->
+<div *ngFor="let employee of filteredEmployee">
+    <app-display-employee [employee]="employee" [searchTerm]="searchTerm"></app-display-employee>
+</div>
+
+<!-- End -->
