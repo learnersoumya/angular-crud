@@ -1,7 +1,7 @@
 <form #employeeForm="ngForm" (ngSubmit)="saveEmployee()">
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title">Create Employee</h3>
+    <h3 class="panel-title">{{ panelTitle }}</h3>
   </div>
   <div class="panel-body">
     <div class="form-group" [class.has-error]="name.invalid && name.touched" [class.has-success]="name.valid">
@@ -13,7 +13,7 @@
     </div>
     <div class="form-group" [class.has-error]="email.invalid" [class.has-success]="email.valid && email.touched && email.dirty">
       <label for="email" class="control-label">Email</label>
-      <input [required]="contactPreference.value==='email'" [email]="employee.email!==''" type="text" id="email" class="form-control" name="email" [(ngModel)]="employee.email" #email="ngModel">
+      <input [required]="contactPreference.value==='Email'" [email]="employee.email!==''" type="text" id="email" class="form-control" name="email" [(ngModel)]="employee.email" #email="ngModel">
       <span class="help-block" *ngIf="email.errors?.required">
         Email is required
       </span>
@@ -23,7 +23,7 @@
     </div>
     <div class="form-group" [class.has-error]="phoneNumber.invalid" [class.has-success]="phoneNumber.valid && phoneNumber.touched && phoneNumber.dirty">
       <label for="phoneNumber" class="control-label">Phone Number</label>
-      <input [required]="contactPreference.value==='phone'" pattern="^[789]\d{9}$" type="text" id="phoneNumber" class="form-control" name="phoneNumber" [(ngModel)]="employee.phoneNumber" #phoneNumber="ngModel">
+      <input [required]="contactPreference.value==='Phone'" pattern="^[789]\d{9}$" type="text" id="phoneNumber" class="form-control" name="phoneNumber" [(ngModel)]="employee.phoneNumber" #phoneNumber="ngModel">
       <span class="help-block" *ngIf="phoneNumber.errors?.required">
         Phone number is required
       </span>
@@ -35,11 +35,11 @@
       <label class="control-label">Contact Preference</label>
       <div class="form-control">
         <label class="radio-inline">
-          <input required type="radio" name="contactPreference" [(ngModel)]="employee.contactPreference" value="email" #contactPreference="ngModel">
+          <input required type="radio" name="contactPreference" [(ngModel)]="employee.contactPreference" value="Email" #contactPreference="ngModel">
           Email
         </label>
         <label class="radio-inline">
-          <input required type="radio" name="contactPreference" [(ngModel)]="employee.contactPreference" value="phone" #contactPreference="ngModel">
+          <input required type="radio" name="contactPreference" [(ngModel)]="employee.contactPreference" value="Phone" #contactPreference="ngModel">
           Phone
         </label>
       </div>
@@ -51,11 +51,11 @@
       <label class="control-label">Gender</label>
       <div class="form-control">
         <label class="radio-inline">
-          <input required type="radio" name="gender" [(ngModel)]="employee.gender" value="male" #gender="ngModel">
+          <input required type="radio" name="gender" [(ngModel)]="employee.gender" value="Male" #gender="ngModel">
           Male
         </label>
         <label class="radio-inline">
-          <input required type="radio" name="gender" [(ngModel)]="employee.gender" value="female" #gender="ngModel">
+          <input required type="radio" name="gender" [(ngModel)]="employee.gender" value="Female" #gender="ngModel">
           Female
         </label>
       </div>
@@ -71,7 +71,7 @@
         </label>
       </div>
     </div>
-    <div class="form-group" [class.has-error]="department.invalid && department.touched" [class.has-success]="department.valid">
+    <div class="form-group" [class.has-error]="department.invalid && department.touched">
         <label for="department" class="control-label">
           Department
         </label>
@@ -97,12 +97,12 @@
         <input type="text" id="photoPath" class="form-control" name="photoPath" [(ngModel)]="employee.photoPath">
     </div>
     <div class="form-group">
-        <button (click)="previewPhoto = !previewPhoto" type="button" class="btn btn-primary">
+        <button (click)="previewPhoto = !previewPhoto" type="button" class="btn btn-primary" *ngIf="employee.photoPath !== null && employee.photoPath !== ''">
           {{previewPhoto ? "Hide " : "Show "}} Priview
         </button>
     </div>
     <div class="form-group">
-        <img [src]="employee.photoPath" height="200" width="200" *ngIf="previewPhoto">
+        <img [src]="employee.photoPath" height="200" width="200" *ngIf="previewPhoto && employee.photoPath !== null && employee.photoPath !== ''">
     </div>
 
   <!-- <div ngModelGroup="passwordGroup" [class.has-error]="confirmPassword.invalid && confirmPassword.touched && !confirmPassword.errors?.required">  

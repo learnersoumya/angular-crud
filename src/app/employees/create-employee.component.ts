@@ -4,7 +4,7 @@ import { Department } from '../models/department.model';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { Employee } from '../models/employee.model';
 import { EmployeeService } from './employee.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-create-employee',
@@ -14,18 +14,8 @@ import { Router } from '@angular/router';
 export class CreateEmployeeComponent implements OnInit {
   @ViewChild('employeeForm') public createEmployeeForm: NgForm;
   previewPhoto = false;
-  employee: Employee = {
-    id: null,
-    name: null,
-    gender: null,
-    email: '',
-    phoneNumber: null,
-    contactPreference: null,
-    dateOfBirth: null,
-    department: 'select',
-    isActive: null,
-    photoPath: null
-  };
+  panelTitle: string;
+  employee: Employee;
   departments: Department[] = [
     {id: 1, name: 'Help Desk'},
     {id: 2, name: 'HR'},
@@ -34,7 +24,9 @@ export class CreateEmployeeComponent implements OnInit {
     {id: 5, name: 'Admin'}
   ];
   bsDatePicker: Partial<BsDatepickerConfig>;
-  constructor( private _employeeService: EmployeeService, private _router: Router ) {
+  constructor( private _employeeService: EmployeeService,
+               private _router: Router,
+               private _route: ActivatedRoute ) {
     this.bsDatePicker = Object.assign({},
       {
           containerClass : 'theme-dark-blue',
@@ -46,6 +38,32 @@ export class CreateEmployeeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._route.paramMap.subscribe(routeParameter => {
+      const id = +routeParameter.get('id');
+      this.getEmployee(id);
+    });
+  }
+
+  getEmployee(id: number): void {
+    if (id === 0) {
+      this.employee = {
+        id: null,
+        name: null,
+        gender: null,
+        email: '',
+        phoneNumber: null,
+        contactPreference: null,
+        dateOfBirth: null,
+        department: 'select',
+        isActive: null,
+        photoPath: null
+      };
+      this.panelTitle = 'Create Employee';
+      this.createEmployeeForm.reset();
+    } else {
+      this.panelTitle = 'Edit Employee';
+      this.employee = Object.assign({}, this._employeeService.getEmployee(id));
+    }
   }
 
   saveEmployee(): void {

@@ -52,4 +52,8 @@ export class DisplayEmployeeComponent implements OnInit, OnChanges {
     });
   }
 
+  editEmployee(): void {
+    this._router.navigate(['edit', this.employee.id]);
+  }
+
 }

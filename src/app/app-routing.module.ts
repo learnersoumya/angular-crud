@@ -20,7 +20,7 @@ const appRoutes: Routes = [
     canActivate: [EmployeeDetailGuard]
   },
   {
-    path: 'create',
+    path: 'edit/:id',
     component: CreateEmployeeComponent,
     canDeactivate: [CreateEmployeeCanDeactivateGuardService]
   },

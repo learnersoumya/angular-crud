@@ -52,7 +52,16 @@ export class EmployeeService {
   }
 
   save(employee: Employee): void {
-    this.listEmployees.push(employee);
+      if (employee.id === null) {
+        const maxId = this.listEmployees.reduce((e1, e2) => {
+            return (e1 > e2) ? e1 : e2;
+        }).id;
+        employee.id = maxId + 1;
+        this.listEmployees.push(employee);
+      } else {
+          const foundindex = this.listEmployees.findIndex(emp => emp.id === employee.id);
+          this.listEmployees[foundindex] = employee;
+      }
   }
 
   getEmployeeCount(): number {
