@@ -55,7 +55,11 @@
 
 <!-- with view of edit view and update -->
 <div *ngFor="let employee of filteredEmployee">
-    <app-display-employee [employee]="employee" [searchTerm]="searchTerm"></app-display-employee>
+    <app-display-employee [employee]="employee" [searchTerm]="searchTerm" (notifyDelete)="onDeleteNotification($event)"></app-display-employee>
+</div>
+
+<div *ngIf="error">
+  {{ error }}
 </div>
 
 <!-- End -->

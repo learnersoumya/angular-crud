@@ -18,6 +18,7 @@ export class ListEmployeesComponent implements OnInit {
   dataFromChild: Employee;
   private _searchTerm: string;
   private arrayIndex = 1;
+  error: string;
 
   get searchTerm(): string {
     return this._searchTerm;
@@ -35,7 +36,7 @@ export class ListEmployeesComponent implements OnInit {
 
   ngOnInit() {
     /* Get data directly from employee service */
-    //this.employees = this._employeeService.getEmployees();
+    // this.employees = this._employeeService.getEmployees();
 
     /* Get data through an observable */
     // this._employeeService.getEmployees().subscribe((empList) => {
@@ -46,11 +47,17 @@ export class ListEmployeesComponent implements OnInit {
     //     this.filteredEmployee = this.employees;
     //   }
     // });
-    
-    //this.employeeToDispaly = this.employees[0];
+    // this.employeeToDispaly = this.employees[0];
 
     /** Get data from resolve activated route which is prefetched when route loaded */
-    this.employees = this._route.snapshot.data['employeeList'];
+    // this.employees = this._route.snapshot.data['employeeList'];
+    const resolvedData: Employee[] | string = this._route.snapshot.data['employeeList'];
+    if (Array.isArray(resolvedData)) {
+      this.employees = resolvedData;
+    } else {
+      this.error = resolvedData;
+    }
+
     if (this._route.snapshot.queryParamMap.has('serchTerm')) {
       this.searchTerm = this._route.snapshot.queryParamMap.get('serchTerm');
     } else {
@@ -81,6 +88,13 @@ export class ListEmployeesComponent implements OnInit {
     this._router.navigate(['employees', employeeId], {
       queryParams: { 'serchTerm': this.searchTerm, 'testParams': 'testParamValue' }
     });
+  }
+
+  onDeleteNotification(id: number): void {
+    const index = this.filteredEmployee.findIndex(emp => emp.id === id);
+    if (index !== -1) {
+       this.filteredEmployee.splice(index, 1);
+    }
   }
 
 }

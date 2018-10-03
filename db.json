@@ -1,0 +1,50 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "name": "Mark",
+      "gender": "Male",
+      "contactPreference": "Email",
+      "email": "mark@gmail.com",
+      "dateOfBirth": "10/25/1988",
+      "department": "IT",
+      "isActive": true,
+      "photoPath": "assets/images/mark.png"
+    },
+    {
+      "id": 2,
+      "name": "Mary",
+      "gender": "Female",
+      "contactPreference": "Phone",
+      "email": "mary@gmail.com",
+      "phoneNumber": 9865875820,
+      "dateOfBirth": "11/20/1986",
+      "department": "HR",
+      "isActive": true,
+      "photoPath": "assets/images/mary.png"
+    },
+    {
+      "id": 3,
+      "name": "John",
+      "gender": "Male",
+      "contactPreference": "Phone",
+      "phoneNumber": 7865808188,
+      "dateOfBirth": "03/12/1981",
+      "department": "IT",
+      "isActive": false,
+      "photoPath": "assets/images/john.png"
+    },
+    {
+      "id": 4,
+      "name": "David",
+      "gender": "Male",
+      "email": "david@gmail.com",
+      "phoneNumber": "9856326584",
+      "contactPreference": "Phone",
+      "dateOfBirth": "2018-10-02T20:53:55.000Z",
+      "department": "4",
+      "isActive": true,
+      "photoPath": "assets/images/john.png"
+    }
+  ]
+}

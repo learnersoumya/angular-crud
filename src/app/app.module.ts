@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
@@ -18,6 +19,7 @@ import { EmployeeFilterPipe } from './employees/employee-filter.pipe';
 import { EmployeeListResolverService } from './employees/employee-list-resolver.service';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { EmployeeDetailGuard } from './employees/employee-detail.guard';
+import { AccordianComponent } from './shared/accordian.component';
 
 
 @NgModule({
@@ -31,10 +33,12 @@ import { EmployeeDetailGuard } from './employees/employee-detail.guard';
     EmployeeDetailComponent,
     EmployeeFilterPipe,
     PageNotFoundComponent,
+    AccordianComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     FormsModule,
     BsDatepickerModule.forRoot()
   ],
